@@ -17,7 +17,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import StarIcon from "@mui/icons-material/Star";
 import { categories } from "../../utils/constants";
 import MetaData from "../Layouts/MetaData";
-import { getRandomProducts } from "../../utils/functions";
+// import { getRandomProducts } from "../../utils/functions";
 import { useLocation } from "react-router-dom";
 
 const Products = () => {
@@ -43,7 +43,7 @@ const Products = () => {
     products,
     loading,
     error,
-    productsCount,
+    // productsCount,
     resultPerPage,
     filteredProductsCount,
   } = useSelector((state) => state.products);
