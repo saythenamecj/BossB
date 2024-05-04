@@ -3,6 +3,7 @@ import Footer from './components/Layouts/Footer/Footer';
 import Header from './components/Layouts/Header/Header';
 import Login from './components/User/Login';
 import Register from './components/User/Register';
+import Terms from './components/User/Terms';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { loadUser } from './actions/userAction';
 import { useEffect } from 'react';
@@ -73,7 +74,7 @@ function App() {
   // disable right click
   window.addEventListener("contextmenu", (e) => e.preventDefault());
   window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 123) e.preventDefault();
+    if (e.keyCode === 123) e.preventDefault();
     if (e.ctrlKey && e.shiftKey && e.keyCode === 73) e.preventDefault();
     if (e.ctrlKey && e.shiftKey && e.keyCode === 74) e.preventDefault();
   });
@@ -85,6 +86,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/terms" element={<Terms />} />
+
 
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />

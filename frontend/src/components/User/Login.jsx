@@ -85,21 +85,13 @@ const Login = () => {
                   <div className="flex flex-col gap-2.5 mt-2 mb-32">
                     <p className="text-xs text-primary-grey text-left">
                       By continuing, you agree to BossB's{" "}
-                      <a
-                        href="https://www.flipkart.com/pages/terms"
-                        className="text-primary-blue"
+                      <Link
+                        to="/terms"
+                        className="font-medium text-sm text-primary-blue"
+                        target="_blank"
                       >
-                        {" "}
-                        Terms of Use
-                      </a>{" "}
-                      and{" "}
-                      <a
-                        href="https://www.flipkart.com/pages/privacypolicy"
-                        className="text-primary-blue"
-                      >
-                        {" "}
-                        Privacy Policy.
-                      </a>
+                        Terms and Conditions
+                      </Link>
                     </p>
                     <button
                       type="submit"

@@ -2,9 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FolderIcon from "@mui/icons-material/Folder";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PersonIcon from "@mui/icons-material/Person";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import ChatIcon from "@mui/icons-material/Chat";
-import FolderSharedIcon from "@mui/icons-material/FolderShared";
+
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { Link, useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
@@ -83,6 +81,7 @@ const Sidebar = ({ activeTab }) => {
           >
             Profile Information
           </Link>
+          {/* <!--
           <Link
             className="p-3 pl-14 hover:bg-blue-50 hover:text-primary-blue"
             to="/"
@@ -95,10 +94,11 @@ const Sidebar = ({ activeTab }) => {
           >
             PAN Card Information
           </Link>
+        --> */}
         </div>
         {/* <!-- account settings tab --> */}
 
-        {/* <!-- payments tab --> */}
+        {/* <!-- payments tab 
         <div className="flex items-center gap-5 px-4 py-4">
           <span className="text-primary-blue">
             <AccountBalanceWalletIcon />
@@ -128,9 +128,9 @@ const Sidebar = ({ activeTab }) => {
             Saved Cards
           </Link>
         </div>
-        {/* <!-- payments tab --> */}
+        payments tab --> */}
 
-        {/* <!-- my chats tab --> */}
+        {/* <!-- my chats tab 
         <div className="flex items-center gap-5 px-4 py-4 border-b">
           <span className="text-primary-blue">
             <ChatIcon />
@@ -145,9 +145,9 @@ const Sidebar = ({ activeTab }) => {
             </span>
           </Link>
         </div>
-        {/* <!-- my chats tab --> */}
+         my chats tab --> */}
 
-        {/* <!-- my stuff tab --> */}
+        {/* <!-- my stuff tab
         <div className="flex items-center gap-5 px-4 py-4">
           <span className="text-primary-blue">
             <FolderSharedIcon />
@@ -186,7 +186,7 @@ const Sidebar = ({ activeTab }) => {
             My Wishlist
           </Link>
         </div>
-        {/* <!-- my stuff tab --> */}
+         my stuff tab --> */}
 
         {/* <!-- logout tab --> */}
         <div className="flex items-center gap-5 px-4 py-4 border-b">
