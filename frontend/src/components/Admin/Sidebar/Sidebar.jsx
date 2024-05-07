@@ -70,7 +70,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
   };
 
   return (
-    <aside className="sidebar z-10 sm:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-3/4 sm:w-1/5 bg-gray-800 text-white overflow-x-hidden border-r">
+    <aside className="sidebar z-10 sm:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-3/4 sm:w-1/6 bg-gray-800 text-white overflow-x-hidden border-r">
       <div className="flex items-center gap-3 bg-gray-700 p-2 rounded-lg shadow-lg my-4 mx-3.5">
         <Avatar alt="Avatar" src={user.avatar.url} />
         <div className="flex flex-col gap-0">
@@ -78,7 +78,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
           <span className="text-gray-300 text-sm">{user.email}</span>
         </div>
         <button
-          onClick={() => setToggleSidebar(false)}
+          onClick={() => setToggleSidebar(true)}
           className="sm:hidden bg-gray-800 ml-auto rounded-full w-10 h-10 flex items-center justify-center"
         >
           <CloseIcon />

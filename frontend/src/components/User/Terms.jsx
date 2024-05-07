@@ -54,9 +54,9 @@ const Terms = () => {
             <h3 className="text-justify text-xxs font-small mt-4 text-gray-800">
               5. Returns and Refunds: We want you to be completely satisfied
               with your purchase. If for any reason you are not satisfied, you
-              may return the product(s) within [number] days of receipt for a
-              refund or exchange, subject to our returns policy. Please refer to
-              our Returns Policy for detailed information on how to initiate a
+              may return the product(s) within 7 days of receipt for a refund or
+              exchange, subject to our returns policy. Please refer to our
+              Returns Policy for detailed information on how to initiate a
               return.
             </h3>
             <h3 className="text-justify text-xxs font-small mt-4 text-gray-800">

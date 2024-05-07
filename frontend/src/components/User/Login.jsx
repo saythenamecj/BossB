@@ -88,7 +88,6 @@ const Login = () => {
                       <Link
                         to="/terms"
                         className="font-medium text-sm text-primary-blue"
-                        target="_blank"
                       >
                         Terms and Conditions
                       </Link>

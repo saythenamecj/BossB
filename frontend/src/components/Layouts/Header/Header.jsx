@@ -15,6 +15,7 @@ const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
 
   const [togglePrimaryDropDown, setTogglePrimaryDropDown] = useState(false);
+  const [toggleSecondaryDropDown, setToggleSecondaryDropDown] = useState(false);
 
   return (
     <header className="bg-primary-blue fixed top-0 py-2.5 w-full z-10">

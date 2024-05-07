@@ -23,7 +23,7 @@ const Shipping = () => {
 
   const [address, setAddress] = useState(shippingInfo.address);
   const [city, setCity] = useState(shippingInfo.city);
-  const [country] = useState("IN");
+  const [country, setCountry] = useState("PHP");
   const [state, setState] = useState(shippingInfo.state);
   const [pincode, setPincode] = useState(shippingInfo.pincode);
   const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
@@ -109,9 +109,9 @@ const Shipping = () => {
                         labelId="country-select"
                         id="country-select"
                         defaultValue={country}
-                        disabled
+                        enabled
                         label="Country"
-                        // onChange={(e) => setCountry(e.target.value)}
+                        onChange={(e) => setCountry(e.target.value)}
                       >
                         <MenuItem value={"PH"}>Philippines</MenuItem>
                       </Select>
