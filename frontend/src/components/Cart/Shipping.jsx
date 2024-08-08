@@ -31,7 +31,7 @@ const Shipping = () => {
   const shippingSubmit = (e) => {
     e.preventDefault();
 
-    if (phoneNo.length < 10 || phoneNo.length > 10) {
+    if (phoneNo.length < 11 || phoneNo.length > 11) {
       enqueueSnackbar("Invalid Phone Number", { variant: "error" });
       return;
     }
@@ -67,15 +67,6 @@ const Shipping = () => {
 
                   <div className="flex gap-6">
                     <TextField
-                      value={pincode}
-                      onChange={(e) => setPincode(e.target.value)}
-                      type="number"
-                      label="Pincode"
-                      fullWidth
-                      variant="outlined"
-                      required
-                    />
-                    <TextField
                       value={phoneNo}
                       onChange={(e) => setPhoneNo(e.target.value)}
                       type="number"
@@ -83,22 +74,6 @@ const Shipping = () => {
                       fullWidth
                       variant="outlined"
                       required
-                    />
-                  </div>
-
-                  <div className="flex gap-6">
-                    <TextField
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      label="City"
-                      fullWidth
-                      variant="outlined"
-                      required
-                    />
-                    <TextField
-                      label="Landmark (Optional)"
-                      fullWidth
-                      variant="outlined"
                     />
                   </div>
 
@@ -134,6 +109,35 @@ const Shipping = () => {
                         ))}
                       </Select>
                     </FormControl>
+                  </div>
+
+                  <div className="flex gap-6">
+                    <TextField
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      label="City"
+                      fullWidth
+                      variant="outlined"
+                      required
+                    />
+
+                    <TextField
+                      value={pincode}
+                      onChange={(e) => setPincode(e.target.value)}
+                      type="number"
+                      label="Zip Code"
+                      fullWidth
+                      variant="outlined"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex gap-6">
+                    <TextField
+                      label="Landmark (Optional)"
+                      fullWidth
+                      variant="outlined"
+                    />
                   </div>
 
                   <button

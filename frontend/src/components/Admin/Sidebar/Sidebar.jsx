@@ -40,11 +40,11 @@ const navMenu = [
     label: "Users",
     ref: "/admin/users",
   },
-  {
-    icon: <ReviewsIcon />,
-    label: "Reviews",
-    ref: "/admin/reviews",
-  },
+  //  {
+  //    icon: <ReviewsIcon />,
+  //    label: "Reviews",
+  //    ref: "/admin/reviews",
+  //  },
   {
     icon: <AccountBoxIcon />,
     label: "My Profile",

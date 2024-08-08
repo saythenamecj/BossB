@@ -1,15 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PriceSidebar from "./PriceSidebar";
 import Stepper from "./Stepper";
-// import {
-//     CardNumberElement,
-//     CardCvcElement,
-//     CardExpiryElement,
-//     useStripe,
-//     useElements,
-// } from '@stripe/react-stripe-js';
+//import {
+//  CardNumberElement,
+//  CardCvcElement,
+// CardExpiryElement,
+//  useStripe,
+//  useElements,
+//} from "@stripe/react-stripe-js";
 import { clearErrors } from "../../actions/orderAction";
 import { useSnackbar } from "notistack";
 import { post } from "../../utils/paytmForm";
@@ -21,11 +22,13 @@ import MetaData from "../Layouts/MetaData";
 
 const Payment = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   // const stripe = useStripe();
   // const elements = useElements();
-  // const paymentBtn = useRef(null);
+  //const paymentBtn = useRef(null);
+
+  const [paymentMethod, setPaymentMethod] = useState("paytm");
 
   const [payDisable, setPayDisable] = useState(false);
 
@@ -44,80 +47,71 @@ const Payment = () => {
     phoneNo: shippingInfo.phoneNo,
   };
 
-  // const order = {
-  //     shippingInfo,
-  //     orderItems: cartItems,
-  //     totalPrice,
-  // }
+  const order = {
+    shippingInfo,
+    orderItems: cartItems,
+    totalPrice,
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    // paymentBtn.current.disabled = true;
     setPayDisable(true);
 
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+    if (paymentMethod === "paytm") {
+      try {
+        console.log("COD selected");
 
-      const { data } = await axios.post(
-        "/api/v1/payment/process",
-        paymentData,
-        config
-      );
+        const order = {
+          shippingInfo,
+          orderItems: cartItems,
+          totalPrice,
+          paymentInfo: {
+            id: "COD",
+            status: "pending",
+          },
+        };
 
-      let info = {
-        action: "https://securegw-stage.paytm.in/order/process",
-        params: data.paytmParams,
-      };
+        dispatch({ type: "CREATE_ORDER_SUCCESS", payload: order });
+        dispatch({ type: "EMPTY_CART" });
 
-      post(info);
+        enqueueSnackbar("Order placed successfully!", { variant: "success" });
+        setPayDisable(false); // Re-enable button after success
+        navigate("/order/success");
+      } catch (error) {
+        console.error("Error placing COD order:", error);
+        setPayDisable(false); // Re-enable button on error
+        enqueueSnackbar("Failed to place order. Please try again.", {
+          variant: "error",
+        });
+      }
+    } else {
+      try {
+        console.log("Processing Paytm payment");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
 
-      // if (!stripe || !elements) return;
+        const { data } = await axios.post(
+          "/api/v1/payment/process",
+          paymentData,
+          config
+        );
 
-      // const result = await stripe.confirmCardPayment(client_secret, {
-      //     payment_method: {
-      //         card: elements.getElement(CardNumberElement),
-      //         billing_details: {
-      //             name: user.name,
-      //             email: user.email,
-      //             address: {
-      //                 line1: shippingInfo.address,
-      //                 city: shippingInfo.city,
-      //                 country: shippingInfo.country,
-      //                 state: shippingInfo.state,
-      //                 postal_code: shippingInfo.pincode,
-      //             },
-      //         },
-      //     },
-      // });
+        let info = {
+          action: "https://securegw-stage.paytm.in/order/process",
+          params: data.paytmParams,
+        };
 
-      // if (result.error) {
-      //     paymentBtn.current.disabled = false;
-      //     enqueueSnackbar(result.error.message, { variant: "error" });
-      // } else {
-      //     if (result.paymentIntent.status === "succeeded") {
-
-      //         order.paymentInfo = {
-      //             id: result.paymentIntent.id,
-      //             status: result.paymentIntent.status,
-      //         };
-
-      //         dispatch(newOrder(order));
-      //         dispatch(emptyCart());
-
-      //         navigate("/order/success");
-      //     } else {
-      //         enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
-      //     }
-      // }
-    } catch (error) {
-      // paymentBtn.current.disabled = false;
-      setPayDisable(false);
-      enqueueSnackbar(error, { variant: "error" });
+        post(info);
+        // Consider re-enabling the button if payment processing is handled externally
+      } catch (error) {
+        console.error("Error processing payment:", error);
+        setPayDisable(false); // Re-enable button on error
+        enqueueSnackbar(error.message, { variant: "error" });
+      }
     }
   };
 
@@ -130,7 +124,7 @@ const Payment = () => {
 
   return (
     <>
-      <MetaData title="BossB's: Secure Payment | Paytm" />
+      <MetaData title="BossB's: Secure Payment" />
 
       <main className="w-full mt-20">
         {/* <!-- row --> */}
@@ -158,10 +152,10 @@ const Payment = () => {
                             <img
                               draggable="false"
                               className="h-6 w-6 object-contain"
-                              src="https://rukminim1.flixcart.com/www/96/96/promos/01/09/2020/a07396d4-0543-4b19-8406-b9fcbf5fd735.png"
-                              alt="Paytm Logo"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2OgI3xJzLA95Bcn9ZnUhZchEkJ4BuwhiUMQ&s"
+                              alt="COD"
                             />
-                            <span>Paytm</span>
+                            <span>Cash on Delivery</span>
                           </div>
                         }
                       />
@@ -181,18 +175,31 @@ const Payment = () => {
                 </form>
 
                 {/* stripe form */}
-                {/* <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full sm:w-3/4 mx-8 my-4">
-                                <div>
-                                    <CardNumberElement />
-                                </div>
-                                <div>
-                                    <CardExpiryElement />
-                                </div>
-                                <div>
-                                    <CardCvcElement />
-                                </div>
-                                <input ref={paymentBtn} type="submit" value="Pay" className="bg-primary-orange w-full sm:w-1/3 my-2 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none cursor-pointer" />
-                            </form> */}
+                {/*
+                {paymentMethod === "stripe" && (
+                  <form
+                    onSubmit={(e) => submitHandler(e)}
+                    autoComplete="off"
+                    className="flex flex-col justify-start gap-3 w-full sm:w-3/4 mx-8 my-4"
+                  >
+                    <div>
+                      <CardNumberElement />
+                    </div>
+                    <div>
+                      <CardExpiryElement />
+                    </div>
+                    <div>
+                      <CardCvcElement />
+                    </div>
+                    <input
+                      ref={paymentBtn}
+                      type="submit"
+                      value="Pay"
+                      className="bg-primary-orange w-full sm:w-1/3 my-2 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none cursor-pointer"
+                    />
+                  </form>
+                )}
+                */}
                 {/* stripe form */}
               </div>
             </Stepper>

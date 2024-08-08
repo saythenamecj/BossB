@@ -130,7 +130,7 @@ const MainData = () => {
       {
         label: "Products",
         borderColor: "#9333ea",
-        backgroundColor: "#9333ea",
+        backgroundColor: "#0000FF",
         hoverBackgroundColor: "#6b21a8",
         data: categories.map(
           (cat) => products?.filter((item) => item.category === cat).length
@@ -144,21 +144,21 @@ const MainData = () => {
       <MetaData title="Admin Dashboard | BossB's" />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-6">
-        <div className="flex flex-col bg-purple-600 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
+        <div className="flex flex-col bg-gray-600 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
           <h4 className="text-gray-100 font-medium">Total Sales Amount</h4>
           <h2 className="text-2xl font-bold">
             ₱{totalAmount?.toLocaleString()}
           </h2>
         </div>
-        <div className="flex flex-col bg-red-500 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
+        <div className="flex flex-col bg-gray-600 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
           <h4 className="text-gray-100 font-medium">Total Orders</h4>
           <h2 className="text-2xl font-bold">{orders?.length}</h2>
         </div>
-        <div className="flex flex-col bg-yellow-500 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
+        <div className="flex flex-col bg-gray-600 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
           <h4 className="text-gray-100 font-medium">Total Products</h4>
           <h2 className="text-2xl font-bold">{products?.length}</h2>
         </div>
-        <div className="flex flex-col bg-green-500 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
+        <div className="flex flex-col bg-gray-600 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
           <h4 className="text-gray-100 font-medium">Total Users</h4>
           <h2 className="text-2xl font-bold">{users?.length}</h2>
         </div>
